@@ -1,0 +1,83 @@
+{% extends "core/base.html" %} {% block title %}Register{% endblock %} {% block
+content %}
+<!-- Background SVG dots pattern full screen pe fixed, top offset ke saath -->
+<div
+  class="fixed left-0 right-0 bottom-0 z-0 pointer-events-none"
+  style="top: 65px"
+>
+  <svg
+    width="100%"
+    height="100%"
+    class="opacity-20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <pattern
+        id="dots"
+        x="0"
+        y="0"
+        width="40"
+        height="40"
+        patternUnits="userSpaceOnUse"
+      >
+        <circle cx="5" cy="5" r="3" fill="#a5b4fc" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#dots)" />
+  </svg>
+</div>
+
+<!-- Register form container -->
+<div
+  class="relative z-10 max-w-md mx-auto bg-white shadow-2xl rounded-2xl p-10 mt-20"
+>
+  <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">
+    Create Account
+  </h2>
+
+  <form method="POST" class="space-y-4">
+    {% csrf_token %}
+    <input
+      type="text"
+      name="username"
+      placeholder="Username"
+      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Email"
+      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+      required
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+      required
+    />
+    <input
+      type="password"
+      name="confirm_password"
+      placeholder="Confirm Password"
+      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+      required
+    />
+    <button
+      type="submit"
+      class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg hover:from-purple-700 hover:to-indigo-600 transition"
+    >
+      Register
+    </button>
+  </form>
+
+  <p class="text-center mt-4 text-gray-600">
+    Already have an account?
+    <a href="{% url 'login' %}" class="text-indigo-600 hover:underline"
+      >Login</a
+    >
+  </p>
+</div>
+{% endblock %}

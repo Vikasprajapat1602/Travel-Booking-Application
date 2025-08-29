@@ -1,0 +1,79 @@
+{% extends "core/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <!-- Background SVG dots pattern full screen, fixed position -->
+  <div class="fixed inset-0 z-0 pointer-events-none" style="top: 65px;">
+    <svg width="100%" height="100%" class="opacity-20" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="5" cy="5" r="3" fill="#a5b4fc" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dots)" />
+    </svg>
+  </div>
+
+  <!-- Login form container, z-10 for front -->
+  <div class="relative z-10 max-w-md mx-auto bg-white shadow-2xl rounded-2xl p-10 mt-20">
+    <div class="flex flex-col items-center mb-6">
+      <!-- Avatar/User Icon -->
+      <div class="w-16 h-16 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center text-3xl font-extrabold text-white shadow mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 11c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.466 0-8 1.743-8 5.25V21h16v-2.75C20 14.743 15.466 13 12 13z" />
+        </svg>
+      </div>
+      <h2 class="text-2xl font-extrabold text-indigo-700 text-center mb-1">Login</h2>
+    </div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="mb-4 text-center text-white py-2 px-4 rounded-lg {% if message.tags == 'error' %}bg-red-500{% else %}bg-green-500{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        class="w-full px-4 py-2 border border-gray-300 bg-indigo-50 rounded-lg focus:ring-2 focus:ring-indigo-500 font-medium"
+        required
+      />
+      <div class="relative">
+        <input
+          type="password"
+          name="password"
+          id="password-field"
+          placeholder="Password"
+          class="w-full px-4 py-2 border border-gray-300 bg-indigo-50 rounded-lg focus:ring-2 focus:ring-indigo-500 font-medium"
+          required
+        />
+        <button type="button" onclick="const f=document.getElementById('password-field'); f.type=f.type==='password'?'text':'password';"
+          class="absolute inset-y-0 right-3 flex items-center px-1 text-indigo-400 hover:text-indigo-600 focus:outline-none"
+          tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-1.664 5.252C11.473 17.5 10.742 18 10 18s-1.473-.5-1.336-1.48C8.782 15.829 9.312 15 10 15c.687 0 1.217.828 1.336 1.77z" />
+          </svg>
+        </button>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 text-lg rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-600 shadow focus:outline-none transition"
+      >
+        Login
+      </button>
+    </form>
+
+    <p class="text-center mt-5 text-gray-600">
+      Don’t have an account?
+      <a href="{% url 'register' %}" class="text-indigo-600 hover:underline font-semibold">Register</a>
+    </p>
+  </div>
+{% endblock %}

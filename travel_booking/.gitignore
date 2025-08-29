@@ -1,0 +1,39 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folders
+venv/
+ENV/
+env/
+
+# Django specific files
+*.log
+local_settings.py
+media/
+
+# Environment variables
+.env
+.env.*
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE and editor folders
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# MySQL dump files (optional)
+*.sql
+*.dump
+
+# Test cache
+.pytest_cache/

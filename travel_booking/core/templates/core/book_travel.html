@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+
+{% block title %}Book Travel{% endblock %}
+
+{% block content %}
+  <div class="max-w-lg mx-auto bg-white shadow-lg rounded-2xl p-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Book Travel</h2>
+
+    <div class="mb-6">
+      <p><strong>Type:</strong> {{ travel.travel_type }}</p>
+      <p><strong>From:</strong> {{ travel.source }}</p>
+      <p><strong>To:</strong> {{ travel.destination }}</p>
+      <p><strong>Date & Time:</strong> {{ travel.date_time }}</p>
+      <p><strong>Price:</strong> ₹{{ travel.price }}</p>
+      <p><strong>Seats Available:</strong> {{ travel.available_seats }}</p>
+    </div>
+
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+      <input
+        type="number"
+        name="seats"
+        min="1"
+        max="{{ travel.available_seats }}"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+        required
+      />
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+      >
+        Confirm Booking
+      </button>
+    </form>
+  </div>
+{% endblock %}
