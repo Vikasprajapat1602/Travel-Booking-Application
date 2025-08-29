@@ -57,8 +57,5 @@
 > ## Deployment
 > You can deploy this Django project on any cloud platform like AWS or PythonAnywhere.
 >
-> ## Contribution
-> Feel free to fork this repository and submit pull requests.
->
 > ## License
 > This project is licensed under the MIT License.
